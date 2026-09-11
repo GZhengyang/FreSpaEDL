@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="FreSpaEDL remote sensing object detection results and interactive result viewer."
+    />
+    <title>FreSpaEDL — Results and Interactive Viewer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="#top" aria-label="FreSpaEDL home">
+        <span class="mark" aria-hidden="true">F</span>
+        <span>FreSpaEDL</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#results">Results</a>
+        <a href="#examples">Examples</a>
+        <a class="github-link" href="https://github.com/GZhengyang/FreSpaEDL">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="overview" aria-labelledby="page-title">
+        <div class="overview-copy">
+          <p class="eyebrow">Remote sensing object detection</p>
+          <h1 id="page-title">Frequency–spatial evidence, evaluated across three benchmarks.</h1>
+          <p class="lede">
+            FreSpaEDL combines frequency-aware feature mining, spatial-semantic calibration,
+            and evidential learning for oriented object detection.
+          </p>
+          <div class="metric-grid" aria-label="Main benchmark results">
+            <article class="metric-card">
+              <span class="dataset">DOTA-v1.0</span>
+              <strong>80.11</strong>
+              <span>mAP · single scale</span>
+            </article>
+            <article class="metric-card featured">
+              <span class="dataset">DIOR-R</span>
+              <strong>69.70</strong>
+              <span>AP at IoU 0.50</span>
+            </article>
+            <article class="metric-card">
+              <span class="dataset">HRSC2016</span>
+              <strong>90.70</strong>
+              <span>VOC 2007 mAP</span>
+            </article>
+            <article class="metric-card">
+              <span class="dataset">HRSC2016</span>
+              <strong>98.50</strong>
+              <span>VOC 2012 mAP</span>
+            </article>
+          </div>
+        </div>
+
+        <aside class="method-note" aria-label="Method summary">
+          <span class="note-index">01</span>
+          <h2>What the model adds</h2>
+          <dl>
+            <div><dt>FDEMM</dt><dd>Adaptive frequency-domain evidence mining</dd></div>
+            <div><dt>SCECM</dt><dd>Spatial-semantic collaborative calibration</dd></div>
+            <div><dt>EDL</dt><dd>Class-wise evidential prediction</dd></div>
+          </dl>
+          <a href="#availability">Code availability →</a>
+        </aside>
+      </section>
+
+      <section class="example-section" id="examples" aria-labelledby="examples-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Interactive result viewer</p>
+            <h2 id="examples-title">Inspect the input and detection output.</h2>
+          </div>
+          <p class="section-note">
+            These verified examples were generated with the epoch-12 DIOR-R model at a
+            score threshold of 0.30.
+          </p>
+        </div>
+
+        <div class="sample-picker" role="group" aria-label="Choose an example image">
+          <button class="sample-button is-active" type="button" data-sample="20830" aria-pressed="true">20830</button>
+          <button class="sample-button" type="button" data-sample="20837" aria-pressed="false">20837</button>
+          <button class="sample-button" type="button" data-sample="21207" aria-pressed="false">21207</button>
+          <button class="sample-button" type="button" data-sample="21708" aria-pressed="false">21708</button>
+        </div>
+
+        <div class="comparison" aria-live="polite">
+          <figure>
+            <figcaption><span>Input</span><span id="input-id">20830.jpg</span></figcaption>
+            <img id="input-image" src="assets/20830.jpg" alt="DIOR-R input image 20830" />
+          </figure>
+          <div class="comparison-divider" aria-hidden="true"><span>→</span></div>
+          <figure>
+            <figcaption><span>FreSpaEDL</span><span id="output-id">20830 result</span></figcaption>
+            <img id="output-image" src="assets/20830_frespaedl.jpg" alt="FreSpaEDL detection result for DIOR-R image 20830" />
+          </figure>
+        </div>
+
+        <div class="runtime-note" id="availability">
+          <div>
+            <strong>Upload-and-run demo</strong>
+            <p>Upload a remote-sensing image or select an example and run FreSpaEDL directly in the browser. The implementation and checkpoint remain server-side during review.</p>
+          </div>
+          <a href="https://gzhengyang--frespaedl-online-demo-web.modal.run/" target="_blank" rel="noopener">Launch online demo →</a>
+        </div>
+      </section>
+
+      <section class="results-section" id="results" aria-labelledby="results-title">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Reported results</p>
+            <h2 id="results-title">Dataset-level and category-level evaluation.</h2>
+          </div>
+          <p class="section-note">Values match the current manuscript tables.</p>
+        </div>
+
+        <div class="result-tabs" role="tablist" aria-label="Benchmark results">
+          <button class="result-tab is-active" role="tab" type="button" data-panel="dota" aria-selected="true">DOTA-v1.0</button>
+          <button class="result-tab" role="tab" type="button" data-panel="dior" aria-selected="false">DIOR-R</button>
+          <button class="result-tab" role="tab" type="button" data-panel="hrsc" aria-selected="false">HRSC2016</button>
+          <button class="result-tab" role="tab" type="button" data-panel="fewshot" aria-selected="false">Few-shot DIOR</button>
+        </div>
+
+        <div class="result-panel is-active" id="panel-dota" role="tabpanel">
+          <div class="panel-summary"><strong>80.11 mAP</strong><span>15 oriented object categories · single-scale training and testing</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Category</th><th>AP</th><th>Category</th><th>AP</th><th>Category</th><th>AP</th></tr></thead>
+              <tbody>
+                <tr><td>Plane</td><td>89.43</td><td>Baseball diamond</td><td>85.39</td><td>Bridge</td><td>56.84</td></tr>
+                <tr><td>Ground track field</td><td>78.38</td><td>Small vehicle</td><td>82.00</td><td>Large vehicle</td><td>85.59</td></tr>
+                <tr><td>Ship</td><td>88.45</td><td>Tennis court</td><td>90.85</td><td>Basketball court</td><td>87.16</td></tr>
+                <tr><td>Storage tank</td><td>86.29</td><td>Soccer-ball field</td><td>69.16</td><td>Roundabout</td><td>68.62</td></tr>
+                <tr><td>Harbor</td><td>78.51</td><td>Swimming pool</td><td>80.96</td><td>Helicopter</td><td>74.11</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="result-panel" id="panel-dior" role="tabpanel" hidden>
+          <div class="panel-summary"><strong>69.70 AP50</strong><span>20 oriented object categories · held-out test split</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Category</th><th>AP</th><th>Category</th><th>AP</th></tr></thead>
+              <tbody>
+                <tr><td>Airplane</td><td>72.13</td><td>Airport</td><td>50.52</td></tr>
+                <tr><td>Baseball field</td><td>80.60</td><td>Basketball court</td><td>89.94</td></tr>
+                <tr><td>Bridge</td><td>48.06</td><td>Chimney</td><td>77.88</td></tr>
+                <tr><td>Dam</td><td>39.50</td><td>Expressway toll station</td><td>74.53</td></tr>
+                <tr><td>Expressway service area</td><td>87.00</td><td>Golf field</td><td>78.54</td></tr>
+                <tr><td>Ground track field</td><td>84.39</td><td>Harbor</td><td>46.34</td></tr>
+                <tr><td>Overpass</td><td>61.50</td><td>Ship</td><td>81.23</td></tr>
+                <tr><td>Stadium</td><td>81.29</td><td>Storage tank</td><td>70.62</td></tr>
+                <tr><td>Tennis court</td><td>89.93</td><td>Train station</td><td>64.00</td></tr>
+                <tr><td>Vehicle</td><td>49.49</td><td>Windmill</td><td>65.59</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="result-panel" id="panel-hrsc" role="tabpanel" hidden>
+          <div class="panel-summary"><strong>Ship detection</strong><span>High-resolution, arbitrary-orientation benchmark</span></div>
+          <div class="hrsc-grid">
+            <article><span>VOC 2007 mAP</span><strong>90.70</strong></article>
+            <article><span>VOC 2012 mAP</span><strong>98.50</strong></article>
+            <article><span>Parameters</span><strong>34.1M</strong></article>
+            <article><span>Compute</span><strong>117G</strong></article>
+          </div>
+        </div>
+
+        <div class="result-panel" id="panel-fewshot" role="tabpanel" hidden>
+          <div class="panel-summary"><strong>Novel-class detection</strong><span>DIOR few-shot protocol</span></div>
+          <div class="table-wrap narrow">
+            <table>
+              <thead><tr><th>Training shots</th><th>Base AP</th><th>Novel AP</th></tr></thead>
+              <tbody>
+                <tr><td>5</td><td>76.2</td><td>44.0</td></tr>
+                <tr><td>10</td><td>75.5</td><td>46.1</td></tr>
+                <tr><td>20</td><td>75.8</td><td>56.6</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>FreSpaEDL review-stage project page</span>
+      <a href="https://github.com/GZhengyang/FreSpaEDL">Code availability ↗</a>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
